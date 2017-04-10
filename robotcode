@@ -1,0 +1,53 @@
+#include <stdio.h>
+intmain(){
+int adc_reading = read_analog(0);
+int total = 0;
+int count = 0;
+int average = total/5;
+
+//counts average of readings. 
+while (count < 5 ) {
+  total = + total + adc_reading;
+  count++;
+  }
+printf("average = %d", average);
+
+//drives robot straight
+set_motor(1,155);
+  sleep(10,500000);
+set_motor(2,-155);
+  sleep(10,500000);
+return 0;
+
+//turns right & left (change values)
+/drives robot straight
+set_motor(1,155);
+  sleep(10,500000);
+set_motor(2,-75);
+  sleep(10,500000);
+return 0;
+
+//reverses slowly 
+/drives robot straight
+set_motor(1,155);
+  sleep(10,500000);
+set_motor(2,-155);
+  sleep(10,500000);
+return 0;
+
+//reverses on IR detection 
+int adc_reading = read_analog(0);
+  for (int i= 0; i<1000; i++){
+    sleep1(0,500000);
+      if(adc_reading<150){
+      set_motor(1,-150);
+      sleep(0,500000);
+      }
+      else {
+      set_motor(1,150);
+      sleep(0,500000);
+      }
+     printf("reading %d", adc_reading);
+    }
+   return 0;
+}
